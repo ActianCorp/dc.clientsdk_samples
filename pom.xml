@@ -11,7 +11,7 @@
         <repository>
             <id>dc_maven_repo</id>
             <name>DataConnect Client SDK Maven Repository</name>
-            <url>http://raw.github.com/twaldrep/dc.maven/repository</url>
+            <url>http://raw.github.com/ActianCorp/dc.maven/repository</url>
         </repository>
     </repositories>
     <properties>
