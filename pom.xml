@@ -4,14 +4,14 @@
     <groupId>com.pervasive.di.client.sdk</groupId>
     <artifactId>di-client-sdk-samples</artifactId>
     <packaging>jar</packaging>
-    <version>11.5.0-SNAPSHOT</version>
+    <version>11.5.0-7</version>
     <name>PDI :: Client :: SDK :: Samples</name>
     <url>http://www.pervasive.com</url>
     <repositories>
         <repository>
             <id>dc_maven_repo</id>
             <name>DataConnect Client SDK Maven Repository</name>
-            <url>http://raw.github.com/twaldrep/dc.maven/repository</url>
+            <url>http://raw.github.com/ActianCorp/dc.maven/repository</url>
         </repository>
     </repositories>
     <properties>
