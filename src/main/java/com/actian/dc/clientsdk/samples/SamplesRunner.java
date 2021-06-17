@@ -39,15 +39,15 @@ public class SamplesRunner
     
     static final String samplePackageName = "Samples";
     static final String samplePackageVersion = "1.0";
-           
+    
     static String samplePackagePath() {
         String fullPackageName = samplePackageName + "-" + samplePackageVersion + ".djar";
         return artifactPath(fullPackageName);
     }
     
-    private static final String sampleDataMacroName = "samples";
+    static final String sampleDataMacroName = "samples";
     
-    private static final String sampleDataMacroValue = new File("target/runtime/data").getAbsolutePath();
+    static final String sampleDataMacroValue = new File("target/runtime/data").getAbsolutePath();
               
     private static TaskBuilder taskBuilder;
     
@@ -108,6 +108,7 @@ public class SamplesRunner
         }
         else {
             // Queue all samples for execution
+            samples.add(new V9ExecutionSample());
             samples.add(new SyncExecutionSample());
             samples.add(new AsyncExecutionSample());
             samples.add(new ThreadedAsyncExecutionSample());

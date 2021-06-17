@@ -16,16 +16,18 @@
     </repositories>
     <properties>
         <sample.to.run></sample.to.run>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.pervasive.di.client.sdk</groupId>
-            <artifactId>di-client-sdk</artifactId>
+            <artifactId>di-client-sdk-local</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.pervasive.di.client.sdk</groupId>
-            <artifactId>di-client-sdk-local</artifactId>
+            <artifactId>di-client-sdk</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -68,7 +70,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>

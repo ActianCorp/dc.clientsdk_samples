@@ -1,1 +1,28 @@
-{"packageName":"Samples","description":"","logLevel":"INFO","packageVersion":"1.0","entryPoint":"Samples-1.0/process_map_invoices_ascii_to_ascii_p.process","macroSetNames":[],"macroDefinitions":[],"variableInitialValues":[],"inMessages":[],"transformOptions":{"truncationOption":"ERROR","overflowOption":"ERROR","nullOption":"ERROR"},"datasetConfigs":{"namedDatasets":[],"namedSessions":[]},"profiling":false,"profile_mask":-1,"profile_output_file":"profile.out","execution_options":{"jvmargs":"","use_jvmargs":false,"classpath_list":[]}}
+{
+    "packageName": "Samples",
+    "description": "",
+    "logLevel": "INFO",
+    "packageVersion": "1.0",
+    "entryPoint": "Samples-1.0/process_map_invoices_ascii_to_ascii_p.process",
+    "macroSetNames": [],
+    "macroDefinitions": [],
+    "variableInitialValues": [],
+    "inMessages": [],
+    "transformOptions": {
+        "truncationOption": "ERROR",
+        "overflowOption": "ERROR",
+        "nullOption": "ERROR"
+    },
+    "datasetConfigs": {
+        "namedDatasets": [],
+        "namedSessions": []
+    },
+    "profiling": false,
+    "profile_mask": -1,
+    "profile_output_file": "profile.out",
+    "execution_options": {
+        "jvmargs": "",
+        "use_jvmargs": false,
+        "classpath_list": []
+    }
+}

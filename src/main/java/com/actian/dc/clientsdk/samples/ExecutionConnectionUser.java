@@ -60,8 +60,8 @@ abstract class ExecutionConnectionUser implements ConnectionUser
         ExecutionConnection cxn = null;
         try
         {
-            cxn = cxnBuilder.createExecutionConnection();            
-            return useConnection(cxn);         
+            cxn = cxnBuilder.createExecutionConnection();
+            return useConnection(cxn);
         }
         catch (SDKException e) {
             logger.severe(e.getMessage());
