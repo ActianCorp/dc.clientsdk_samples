@@ -75,7 +75,7 @@ The Job object represents a submitted Task. The Job object provides the executio
 
 ### Threading Applications
 
-The execution features are multithreaded. In particular, each task that is submitted asynchronously, and all of the progress updates happen on a single thread.
+The execution features are multithreaded. In particular, each task is submitted asynchronously, and all of the progress updates happen on a single thread.
 
 ### Synchronous Execution
 
@@ -126,10 +126,12 @@ src/main/artifacts:
   Samples-1.0.djar:  Package containing maps and processes used by the samples
   Samples.process.rtc:  Runtime configuration used to configure and load a process within the package
   Samples.map.rtc:  Runtime configuration used to configure and load a map within the package
+  V9Samples-1.0.djar:  Package containing artifacts used by the V9 sample
 src/main/assemblies:
   stage-artifacts-and-data.xml:  Maven assembly used to stage sample artifacts and data for execution
 src/main/data:
-  invoices_src.txt:  Source data used by the sample artifacts
+  invoices_src.txt:  Source data used by sample artifacts
+  Accounts.txt:  Source data used by the sample artifacts
 src/main/java/com/actian/dc/clientsdk/samples:
   SamplesRunner.java:  Main class used to execute all of the samples
   ConnectionBuilder.java:  Helper class used to build a Connection
@@ -145,6 +147,7 @@ src/main/java/com/actian/dc/clientsdk/samples:
                              Maps require a runtime configuration to supply source and target datasets.
                              Processes can be run using a runtime configuration, but can also be used directly.
   ThreadedAsyncExecutionSample.java:  Executes a task asynchronously, using wait/notify to determine when task is complete.
+  V9ExecutionSample.java:  Sample which demonstrates execution of V9 artifacts.  Also demonstrates configuration of the Task using a dynamically-created runtime configuration.
 ```
 ---
 ## Support
