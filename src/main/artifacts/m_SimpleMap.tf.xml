@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--======  Transformation XML ======-->
+<!-- <!DOCTYPE Transformation SYSTEM "DJMap.dtd"> -->
+<Transformation schemaVersion = "1.2" version = "1.11" creator = "USRC-BICL54\cognos" datecreated = "2019-04-02T18:16:00-04:00" author = "ACTIAN\twaldrep" datemodified = "2021-06-15T17:30:16.989-04:00" partial = "no">
+  <Description><![CDATA[A simple map example]]></Description>
+  <LogManager loglocation = "$(Workspace)/Maps/m_SimpleMap.log" messagetypemask = "15"/>
+  <ProfileManager enabled = "False" outputfile = "C:\dev\temp\dc11_6\workspace\Maps\Execution Profiles\profile.out" filter = "-1"/>
+  <MacroManager>
+    <MacroSets>
+      <MacroSet name = "AWS_S3"/>
+      <MacroSet name = "AZURE_QUEUE"/>
+      <MacroSet name = "ActianX"/>
+      <MacroSet name = "AvalancheAWS"/>
+      <MacroSet name = "AvalancheAZURE"/>
+      <MacroSet name = "AvalancheGCP"/>
+      <MacroSet name = "DataFlow"/>
+      <MacroSet name = "Email"/>
+      <MacroSet name = "FTP"/>
+      <MacroSet name = "IBMDB2v10"/>
+      <MacroSet name = "IBM_MQ_Queue"/>
+      <MacroSet name = "Informix11"/>
+      <MacroSet name = "Ingres"/>
+      <MacroSet name = "IntegrationManager"/>
+      <MacroSet name = "JDBC_ActianVector"/>
+      <MacroSet name = "JDBC_Avalanche"/>
+      <MacroSet name = "JDBC_Avalanche_GCP"/>
+      <MacroSet name = "JDBC_DB2"/>
+      <MacroSet name = "JDBC_Ingress"/>
+      <MacroSet name = "JDBC_MySQL"/>
+      <MacroSet name = "JDBC_SqlServer"/>
+      <MacroSet name = "JMS"/>
+      <MacroSet name = "Kafka_Microbatch"/>
+      <MacroSet name = "MySQL"/>
+      <MacroSet name = "NetSuite"/>
+      <MacroSet name = "NetSuite2012"/>
+      <MacroSet name = "ODBC"/>
+      <MacroSet name = "ORACRMOD"/>
+      <MacroSet name = "Oracle12c"/>
+      <MacroSet name = "Oracle19c"/>
+      <MacroSet name = "PSQL"/>
+      <MacroSet name = "RabbitMQ"/>
+      <MacroSet name = "RestAPI"/>
+      <MacroSet name = "SAP"/>
+      <MacroSet name = "SFDC"/>
+      <MacroSet name = "SQL2016"/>
+      <MacroSet name = "SQL2019"/>
+      <MacroSet name = "ServiceNow"/>
+      <MacroSet name = "Sybase"/>
+      <MacroSet name = "Vector"/>
+      <MacroSet name = "WebSphereMQ"/>
+      <MacroSet name = "Zen"/>
+      <MacroSet name = "GLOBAL"/>
+    </MacroSets>
+  </MacroManager>
+  <TransformationOptions>
+    <Option name = "truncationhandling" value = "0"/>
+    <Option name = "overflowhandling" value = "0"/>
+    <Option name = "nonullshandling" value = "0"/>
+    <Option name = "maxerrorcount" value = "1"/>
+    <Option name = "logfieldcount" value = "3"/>
+    <Option name = "clearlogbeforerun" value = "yes"/>
+  </TransformationOptions>
+  <TransformationSources>
+    <TransformationSource name = "TransformationSource1" connectorname = "ASCII (Delimited)">
+      <TransformationSourceOptions>
+        <Option name = "codepage" value = "ANSI"/>
+        <Option name = "recsep" value = "SystemDefault"/>
+        <Option name = "fieldcount" value = "0"/>
+        <Option name = "fldsep" value = ","/>
+        <Option name = "fldsdelim" value = "&quot;"/>
+        <Option name = "fldedelim" value = "&quot;"/>
+        <Option name = "header" value = "True"/>
+        <Option name = "altfldsep" value = "None"/>
+        <Option name = "soffset" value = "0"/>
+        <Option name = "autostyle" value = "False"/>
+        <Option name = "stylesamplesize" value = "5000"/>
+        <Option name = "lstrip" value = "False"/>
+        <Option name = "tstrip" value = "False"/>
+        <Option name = "field1isrectypeid" value = "False"/>
+        <Option name = "nullind" value = "none"/>
+        <Option name = "emptyfieldsnull" value = "False"/>
+        <Option name = "numericformatnormalization" value = "False"/>
+        <Option name = "layoutmismatch" value = "2"/>
+      </TransformationSourceOptions>
+      <DataAccess>
+        <ConnectionInfo>
+          <ResMgrSession name = "RMSession1" type = "ASCII (Delimited)"/>
+          <ConnectionDetail location = "$(samples)/Accounts.txt"/>
+        </ConnectionInfo>
+        <SampleInfo type = "All"/>
+        <DataAccessOptions>
+          <Option name = "filterrecordlimit" value = "2147483647"/>
+          <Option name = "sortduplicaterecordsallowed" value = "True"/>
+        </DataAccessOptions>
+      </DataAccess>
+    </TransformationSource>
+  </TransformationSources>
+  <TransformationTargets>
+    <TransformationTarget name = "TransformationTarget1" connectorname = "ASCII (Fixed)" outputmode = "Replace" updatemode = "UpdateEvery" updatewithnullfields = "no" replacefullrecord = "yes">
+      <TransformationTargetOptions>
+        <Option name = "codepage" value = "ANSI"/>
+        <Option name = "recsep" value = "CR-LF"/>
+        <Option name = "tabex" value = "0"/>
+        <Option name = "datatypes" value = "standard"/>
+        <Option name = "ragged" value = "False"/>
+        <Option name = "fillfields" value = "True"/>
+        <Option name = "fldsep" value = "None"/>
+        <Option name = "updateaddmismatch" value = "True"/>
+        <Option name = "layoutmismatch" value = "0"/>
+        <Option name = "recordrepetitioncount" value = "0"/>
+      </TransformationTargetOptions>
+      <DataAccess>
+        <ConnectionInfo>
+          <ResMgrSession name = "RMSession1" type = "ASCII (Fixed)"/>
+          <ConnectionDetail location = "$(samples)/AccountFixed.txt"/>
+        </ConnectionInfo>
+        <SampleInfo type = "All"/>
+        <DataAccessOptions>
+          <Option name = "filterrecordlimit" value = "2147483647"/>
+        </DataAccessOptions>
+      </DataAccess>
+    </TransformationTarget>
+  </TransformationTargets>
+  <TransformationMap mapname = "m_SimpleMap.map.xml" originallocation = "C:\dev\temp\dc11_6\workspace\Maps"/>
+</Transformation>
