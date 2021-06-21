@@ -127,6 +127,8 @@ src/main/artifacts:
   Samples.process.rtc:  Runtime configuration used to configure and load a process within the package
   Samples.map.rtc:  Runtime configuration used to configure and load a map within the package
   V9Samples-1.0.djar:  Package containing artifacts used by the V9 sample
+  m_SimpleMap.map.xml:  Free-standing V9 map file used by the V9 sample
+  m_SimpleMap.tf.xml:  Free-standing V9 transformation file used by the V9 sample
 src/main/assemblies:
   stage-artifacts-and-data.xml:  Maven assembly used to stage sample artifacts and data for execution
 src/main/data:
