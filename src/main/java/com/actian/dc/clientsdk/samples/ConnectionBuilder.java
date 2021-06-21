@@ -98,6 +98,7 @@ public class ConnectionBuilder
         props.put(ConnectionFactory.LOCAL_ENGINE_LISTENER_PORT, listenerPort);
         props.put(ConnectionFactory.LOCAL_WORK_DIRECTORY, workingDir());
         props.put(ConnectionFactory.PACKAGELOCATION, packageLocation);
+        props.put(ConnectionFactory.LOCAL_ENGINE_EXECUTABLE_NAME, "C:/Program Files/Actian/actian-dc-studio-11.6.0-56/di-standalone-engine-11.6.0-56/jre/bin/java.exe");
 
         return props;
     }

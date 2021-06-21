@@ -150,7 +150,7 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
                     return progress;
                 }
                 else {
-                    int remaining = secondsToWait * (retries-i);                
+                    int remaining = secondsToWait * (retries-i);
                     logger.info("Countdown to shutdown: " + remaining + " seconds");
                 }
             }

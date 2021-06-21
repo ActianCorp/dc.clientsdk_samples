@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--======  Map XML ======-->
+<!-- <!DOCTYPE Map SYSTEM "DJMap.dtd"> -->
+<Map schemaVersion = "1.2" version = "1.11" creator = "USRC-BICL54\cognos" datecreated = "2019-04-02T18:16:00-04:00" author = "ACTIAN\twaldrep" datemodified = "2021-06-15T17:30:16.989-04:00">
+  <Description><![CDATA[A simple map example]]></Description>
+  <MapSources>
+    <MapSource name = "MapSource1">
+      <MapSchema>
+        <Schema connectorname = "ASCII (Delimited)" designedfor = "Source">
+          <RecordLayouts>
+            <RecordLayout name = "R1" length = "189" status = "0">
+              <Origin origintype = "0"/>
+              <Fields>
+                <Field name = "Account Number">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "9" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Name">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "21" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Company">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "31" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Street">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "35" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "City">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "16" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "State">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "2" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Zip">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "10" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Email">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "25" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Birth Date">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "10" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Favorites">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "11" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Standard Payment">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "6" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Payments">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "7" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+                <Field name = "Balance">
+                  <Datatype datatype = "0" dataalias = "Text" datalength = "6" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no"/>
+                </Field>
+              </Fields>
+              <RecordLayoutOptions>
+                <Option name = "uniquenameprefix" value = "FIELD1"/>
+              </RecordLayoutOptions>
+            </RecordLayout>
+          </RecordLayouts>
+          <Rules/>
+        </Schema>
+      </MapSchema>
+      <RecordLayoutEvents recordlayoutname = "R1">
+        <Event name = "AfterEveryRecord">
+          <Action name = "ClearMapPut Record">
+            <Parameter position = "0" name = "target name"><![CDATA[Target]]></Parameter>
+            <Parameter position = "1" name = "record layout"><![CDATA[R1]]></Parameter>
+          </Action>
+        </Event>
+      </RecordLayoutEvents>
+    </MapSource>
+  </MapSources>
+  <MapTargets>
+    <MapTarget name = "MapTarget1">
+      <MapSchema>
+        <Schema connectorname = "ASCII (Fixed)" designedfor = "Target">
+          <RecordLayouts>
+            <RecordLayout name = "R1" length = "0" status = "0">
+              <Origin origintype = "0"/>
+              <Fields>
+                <Field name = "Account Number">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "9" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Name">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "21" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Company">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "31" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Street">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "35" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "City">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "16" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "State">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "2" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Zip">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "10" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Email">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "25" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Birth Date">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "10" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Favorites">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "11" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Standard Payment">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "6" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Payments">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "7" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+                <Field name = "Balance">
+                  <Datatype datatype = "0" dataalias = "Text" dataalign = "Left" datalength = "6" dataidentity = "no" dataautoinc = "no" datacurrency = "no" datarowversion = "no" datapadchar = " "/>
+                </Field>
+              </Fields>
+              <RecordLayoutOptions>
+                <Option name = "uniquenameprefix" value = "FIELD1"/>
+              </RecordLayoutOptions>
+            </RecordLayout>
+          </RecordLayouts>
+          <Rules/>
+        </Schema>
+        <MapExpressions>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Account Number"><![CDATA[Records("R1").Fields("Account Number")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Name"><![CDATA[Records("R1").Fields("Name")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Company"><![CDATA[Records("R1").Fields("Company")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Street"><![CDATA[Records("R1").Fields("Street")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "City"><![CDATA[Records("R1").Fields("City")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "State"><![CDATA[Records("R1").Fields("State")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Zip"><![CDATA[Records("R1").Fields("Zip")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Email"><![CDATA[Records("R1").Fields("Email")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Birth Date"><![CDATA[Records("R1").Fields("Birth Date")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Favorites"><![CDATA[Records("R1").Fields("Favorites")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Standard Payment"><![CDATA[Records("R1").Fields("Standard Payment")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Payments"><![CDATA[Records("R1").Fields("Payments")]]></MapExpression>
+          <MapExpression language = "DJScript" recordlayoutname = "R1" fieldname = "Balance"><![CDATA[Records("R1").Fields("Balance")]]></MapExpression>
+        </MapExpressions>
+      </MapSchema>
+    </MapTarget>
+  </MapTargets>
+</Map>
