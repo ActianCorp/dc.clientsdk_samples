@@ -20,7 +20,7 @@ Before running these samples, you will need:
 
 1. Apache Maven 3.5.0 or higher [maven.apache.org](https://maven.apache.org/)
 2. JDK version 8. Note: a JRE is not sufficient to build the samples 
-3. Licensed DataConnect 11.5 installation with either the DataConnect Studio IDE or a standalone DataConnect Runtime Engine
+3. Licensed DataConnect 11.6 installation with either the DataConnect Studio IDE or a standalone DataConnect Runtime Engine
    
 Note: the sample code must be on the same machine as the DataConnect install.
 
