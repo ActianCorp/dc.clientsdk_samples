@@ -28,7 +28,7 @@ import java.util.logging.Logger;
  */
 abstract class ExecutionConnectionUser implements ConnectionUser
 {
-    protected Logger logger;
+    protected static final Logger LOGGER = LogUtil.getLogger(ExecutionConnectionUser.class);
     
     /**
      * Returns true if the sample supports local execution.  The default value
@@ -55,7 +55,6 @@ abstract class ExecutionConnectionUser implements ConnectionUser
     @Override
     public boolean useConnection(ConnectionBuilder cxnBuilder)
     {
-        logger = LogUtil.getLogger(getClass());
 
         ExecutionConnection cxn = null;
         try
@@ -64,7 +63,7 @@ abstract class ExecutionConnectionUser implements ConnectionUser
             return useConnection(cxn);
         }
         catch (SDKException e) {
-            logger.severe(e.getMessage());
+            LOGGER.severe(e.getMessage());
             return false;
         }
         finally {
@@ -85,14 +84,14 @@ abstract class ExecutionConnectionUser implements ConnectionUser
     {
         // Display any Error Message
         if (job.getResult().getErrorMessage() != null)
-            logger.info(job.getResult().getErrorMessage());
+            LOGGER.info(job.getResult().getErrorMessage());
 
         try {
             // Get the job log
-            logger.info(cxn.getLog(job));
+            LOGGER.info(cxn.getLog(job));
             return (job.getResult().getServiceReturnCode() == JobServiceReturnCode.SUCCEEDED);
         } catch (Exception e) {
-            logger.severe(e.getMessage());
+            LOGGER.severe(e.getMessage());
             return false;
         }
     }

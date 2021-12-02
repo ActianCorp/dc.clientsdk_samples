@@ -19,6 +19,7 @@ import com.pervasive.di.client.sdk.ExecutionConnection;
 import com.pervasive.di.client.sdk.Job;
 import com.pervasive.di.client.sdk.SDKException;
 import com.pervasive.di.client.sdk.Task;
+import java.util.logging.Level;
 
 /**
  * Executes a task asynchronously, using polling to determine when task is complete.
@@ -40,8 +41,8 @@ public class AsyncExecutionSample extends ExecutionConnectionUser
 
         // Execute the task asynchronously.
         // The SimpleJobListener will set the finished boolean to true when the job is done.
-        SimpleJobListener listener = new SimpleJobListener(logger);
-        logger.info("Submitting task "+task.getTaskName());
+        SimpleJobListener listener = new SimpleJobListener(LOGGER);
+        LOGGER.log(Level.INFO, "Submitting task {0}", task.getTaskName());
         Job job = cxn.submit(task, listener);
 
         try {
@@ -49,7 +50,7 @@ public class AsyncExecutionSample extends ExecutionConnectionUser
             while (!listener.isFinished())
                 Thread.sleep(3000);
         } catch(InterruptedException e) {
-            logger.severe(e.getMessage());
+            LOGGER.severe(e.getMessage());
             return false;   
         }
         

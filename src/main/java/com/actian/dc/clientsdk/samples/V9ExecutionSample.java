@@ -23,6 +23,7 @@ import com.pervasive.di.client.sdk.SDKException;
 import com.pervasive.di.client.sdk.Task;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Execute a v9 task synchronously.
@@ -50,7 +51,7 @@ public class V9ExecutionSample extends ExecutionConnectionUser
     {
         
         // Create tasks to execute sychronously
-        List<Task> tasks = new ArrayList<Task>(3);
+        List<Task> tasks = new ArrayList<>(3);
         
         // Configure a task that executes an artifacts in a package/djar
         RuntimeConfig config = new RuntimeConfig();
@@ -58,9 +59,9 @@ public class V9ExecutionSample extends ExecutionConnectionUser
         config.setPackageName(PACKAGE_NAME);
         config.setPackageVersion(PACKAGE_VERSION);
         config.setEntryPoint(ENTRYPOINT);
+        config.addMacroDefinition(new NameValuePair(SamplesRunner.SAMPLE_DATA_MACRO_NAME, SamplesRunner.SAMPLE_DATA_MACRO_VALUE));
         Task tempTask = new Task();
         tempTask.populate(config);
-        tempTask.addMacro(new NameValuePair(SamplesRunner.sampleDataMacroName, SamplesRunner.sampleDataMacroValue));
         tasks.add(tempTask);
         
         // Configure a task which executes a V9 map directly (not in a package/djar)
@@ -68,28 +69,28 @@ public class V9ExecutionSample extends ExecutionConnectionUser
         config.setName("Execute *.tf.xml directly (not in a package/djar)");
         config.setPackageName(null);  // Note that the package name is null
         config.setEntryPoint(SamplesRunner.artifactPath(ENTRYPOINT));
+        config.addMacroDefinition(new NameValuePair(SamplesRunner.SAMPLE_DATA_MACRO_NAME, SamplesRunner.SAMPLE_DATA_MACRO_VALUE));
         tempTask = new Task();
         tempTask.populate(config);
-        tempTask.addMacro(new NameValuePair(SamplesRunner.sampleDataMacroName, SamplesRunner.sampleDataMacroValue));
         tasks.add(tempTask);
         
         for (Task task: tasks) {                
-            logger.info("Submitting task "+task.getTaskName());
+            LOGGER.log(Level.INFO, "Submitting task {0}", task.getTaskName());
             Job job = cxn.submit(task, false);
             switch (job.getJobStatus())
             {
             case FINISHED_OK:
-                logger.info("V9 Job Completed Successfully");
+                LOGGER.info("V9 Job Completed Successfully");
                 break;
 
             case FINISHED_ERROR:
-                logger.info("V9 Job Completed unsuccessfully");
+                LOGGER.info("V9 Job Completed unsuccessfully");
                 if (job.getResult().getErrorMessage() != null)
                     if ( !job.getResult().getErrorMessage().isEmpty())
-                    logger.info(job.getResult().getErrorMessage());
+                    LOGGER.info(job.getResult().getErrorMessage());
                 break;
             default:
-                logger.info("V9 Job Status: "+job.getJobStatus().toString());
+                LOGGER.log(Level.INFO, "V9 Job Status: {0}", job.getJobStatus().toString());
                 break;
             }
 

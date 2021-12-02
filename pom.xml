@@ -4,7 +4,7 @@
     <groupId>com.pervasive.di.client.sdk</groupId>
     <artifactId>di-client-sdk-samples</artifactId>
     <packaging>jar</packaging>
-    <version>11.6.0-107</version>
+    <version>12.0.0-13</version>
     <name>PDI :: Client :: SDK :: Samples</name>
     <url>http://www.pervasive.com</url>
     <repositories>
@@ -23,18 +23,13 @@
     </repositories>
     <properties>
         <sample.to.run></sample.to.run>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.pervasive.di.client.sdk</groupId>
             <artifactId>di-client-sdk-local</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.pervasive.di.client.sdk</groupId>
-            <artifactId>di-client-sdk</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -47,11 +42,16 @@
             <artifactId>jcore</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.pervasive.engine.jdk</groupId>
+            <artifactId>djec</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
-           <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
@@ -68,8 +68,8 @@
                             </descriptors>
                             <attach>false</attach>
                             <tarLongFileMode>gnu</tarLongFileMode>
-                            <recompressZippedFiles>true</recompressZippedFiles>
                             <appendAssemblyId>false</appendAssemblyId>
+                            <outputDirectory>target</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -77,7 +77,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
@@ -99,4 +99,3 @@
         </plugins>
     </build>
 </project>
-

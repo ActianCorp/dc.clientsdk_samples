@@ -23,6 +23,7 @@ import com.pervasive.cosmos.Config;
 import java.io.File;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -33,15 +34,15 @@ public class ConnectionBuilder
 {
     private static final Logger logger = LogUtil.getLogger(ConnectionBuilder.class);
 
-    private static final ConnectionType connectionType = ConnectionType.LOCAL;
+    private static final ConnectionType CONNECTION_TYPE = ConnectionType.LOCAL;
 
     // Configuration for local execution
 
-    private static final String installPath = Config.getInstance().getProperty("InstallPath");
-    private static final String iniFilePath = Config.getInstance().getIniFile().getAbsolutePath();
-    private static final String listenerPort = "4443";
-    private static final String workingDir = "target/work";
-    private static final String packageLocation = SamplesRunner.artifactsPath;
+    private static final String INSTALL_PATH = Config.getInstance().getProperty("InstallPath");
+    private static final String INI_FILE_PATH = Config.getInstance().getIniFile().getAbsolutePath();
+    private static final String LISTENER_PORT = "4443";
+    private static final String WORKING_DIRECTORY = "target/work";
+    private static final String PACKAGE_LOCATION = SamplesRunner.ARTIFACTS_PATH;
 
     private final ConnectionFactory factory;
 
@@ -50,7 +51,7 @@ public class ConnectionBuilder
     }
 
     boolean isLocal() {
-        return ConnectionBuilder.connectionType == ConnectionType.LOCAL;
+        return ConnectionBuilder.CONNECTION_TYPE == ConnectionType.LOCAL;
     }
 
     /**
@@ -82,28 +83,28 @@ public class ConnectionBuilder
         while (e.hasMoreElements()) {
             String propName = (String)e.nextElement();
             String propVal = props.getProperty(propName);
-            logger.info(propName + " = " + propVal);
+            logger.log(Level.INFO, "{0} = {1}", new String[]{propName, propVal});
         }
         logger.info("End factory configuration\n");
     }
 
     private static Properties getConfiguration() {
-        if (connectionType != ConnectionType.LOCAL)
+        if (CONNECTION_TYPE != ConnectionType.LOCAL)
             throw new IllegalStateException(
                     "ConnectionFactory can't be created with non-local connection type.");
         Properties props = new Properties();
-        props.put(ConnectionFactory.CONNECTIONTYPE, connectionType.toString());
-        props.put(ConnectionFactory.LOCAL_ENGINE_INSTALL_PATH, installPath);
-        props.put(ConnectionFactory.INI_FILE_PATH,iniFilePath);
-        props.put(ConnectionFactory.LOCAL_ENGINE_LISTENER_PORT, listenerPort);
+        props.put(ConnectionFactory.CONNECTIONTYPE, CONNECTION_TYPE.toString());
+        props.put(ConnectionFactory.LOCAL_ENGINE_INSTALL_PATH, INSTALL_PATH);
+        props.put(ConnectionFactory.INI_FILE_PATH,INI_FILE_PATH);
+        props.put(ConnectionFactory.LOCAL_ENGINE_LISTENER_PORT, LISTENER_PORT);
         props.put(ConnectionFactory.LOCAL_WORK_DIRECTORY, workingDir());
-        props.put(ConnectionFactory.PACKAGELOCATION, packageLocation);
+        props.put(ConnectionFactory.PACKAGELOCATION, PACKAGE_LOCATION);
 
         return props;
     }
 
     private static String workingDir() {
-        File f = new File(workingDir);
+        File f = new File(WORKING_DIRECTORY);
         f.mkdirs();
         return f.getAbsolutePath();
     }

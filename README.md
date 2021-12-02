@@ -18,9 +18,9 @@ All samples in this project use the same provided DataConnect integration packag
 
 Before running these samples, you will need:
 
-1. Apache Maven 3.5.0 or higher [maven.apache.org](https://maven.apache.org/)
-2. JDK version 8. Note: a JRE is not sufficient to build the samples 
-3. Licensed DataConnect 11.6 installation with either the DataConnect Studio IDE or a standalone DataConnect Runtime Engine
+1. Apache Maven 3.8.0 or higher [maven.apache.org](https://maven.apache.org/)
+2. JDK version 11. Note: a JRE is not sufficient to build the samples 
+3. Licensed DataConnect 12.0.0 installation with either the DataConnect Studio IDE or a standalone DataConnect Runtime Engine
    
 Note: the sample code must be on the same machine as the DataConnect install.
 
@@ -40,11 +40,11 @@ Note: for more information about installing and configuring the DataConnect Runt
 ---
 ## Building And Running the Samples
 
-After you have completed the setup above, open a command shell and change directory to the root of the samples.
+After you have completed the setup above, open a command shell and change directory to the root of the dc.clientsdk_samples project.
 
 To build and execute all samples, run the following command: **`mvn verify`**
 	
-To build and execute a single sample, specify the name of the sample: **`mvn verif -Dsample.to.run=SyncExecutionSample`**
+To build and execute a single sample, specify the name of the sample: **`mvn verify -Dsample.to.run=SyncExecutionSample`**
 
 ---
 ## Verifying Sample Results
@@ -121,6 +121,7 @@ Exceptions contain important error information useful for debugging. The executi
 ## Project Structure
 ```
 README.TXT:  This file
+LICENSE:  Apache License 2.0
 pom.xml:  Maven build script
 src/main/artifacts:
   Samples-1.0.djar:  Package containing maps and processes used by the samples

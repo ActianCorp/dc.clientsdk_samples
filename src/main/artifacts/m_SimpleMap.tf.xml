@@ -4,7 +4,7 @@
 <Transformation schemaVersion = "1.2" version = "1.11" creator = "USRC-BICL54\cognos" datecreated = "2019-04-02T18:16:00-04:00" author = "ACTIAN\twaldrep" datemodified = "2021-06-15T17:30:16.989-04:00" partial = "no">
   <Description><![CDATA[A simple map example]]></Description>
   <LogManager loglocation = "$(Workspace)/Maps/m_SimpleMap.log" messagetypemask = "15"/>
-  <ProfileManager enabled = "False" outputfile = "C:\dev\temp\dc11_6\workspace\Maps\Execution Profiles\profile.out" filter = "-1"/>
+  <ProfileManager enabled = "False" outputfile = "C:\temp\m_SimpleMap_profile.out" filter = "-1"/>
   <MacroManager>
     <MacroSets>
       <MacroSet name = "AWS_S3"/>

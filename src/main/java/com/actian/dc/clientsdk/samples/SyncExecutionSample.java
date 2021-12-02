@@ -21,6 +21,7 @@ import com.pervasive.di.client.sdk.SDKException;
 import com.pervasive.di.client.sdk.Task;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Executes tasks synchronously.  
@@ -32,13 +33,14 @@ import java.util.List;
 public class SyncExecutionSample extends ExecutionConnectionUser
 {
     /**
+     * @throws com.pervasive.di.client.sdk.SDKException
      * @see com.actian.dc.clientsdk.samples.ExecutionConnectionUser#useConnection(com.pervasive.di.client.sdk.ExecutionConnection) 
      */
     @Override
     public boolean useConnection(ExecutionConnection cxn) throws SDKException 
     {
         // Create tasks to execute sychronously
-        List<Task> tasks = new ArrayList<Task>(3);        
+        List<Task> tasks = new ArrayList<>(3);        
         // Add task for sample map, using a runtime configuration      
         tasks.add(SamplesRunner.sampleTask("Samples.map.rtc"));
         // Add task for sample process, using a runtime configuration
@@ -46,23 +48,23 @@ public class SyncExecutionSample extends ExecutionConnectionUser
         // Add task for sample process, specifying entry point directly
         tasks.add(sampleTaskNoConfig()); 
         
-        for (Task task: tasks) {                
-            logger.info("Submitting task "+task.getTaskName());
+        for (Task task: tasks) {
+            LOGGER.log(Level.INFO, "Submitting task {0}", task.getTaskName());
             Job job = cxn.submit(task, false);
             switch (job.getJobStatus())
             {
             case FINISHED_OK:
-                logger.info("Job Completed Successfully");
+                LOGGER.info("Job Completed Successfully");
                 break;
 
             case FINISHED_ERROR:
-                logger.info("Job Completed unsuccessfully");
+                LOGGER.info("Job Completed unsuccessfully");
                 if (job.getResult().getErrorMessage() != null)
                     if ( !job.getResult().getErrorMessage().isEmpty())
-                    logger.info(job.getResult().getErrorMessage());
+                    LOGGER.info(job.getResult().getErrorMessage());
                 break;
             default:
-                logger.info("Job Status: "+job.getJobStatus().toString());
+                LOGGER.log(Level.INFO, "Job Status: {0}", job.getJobStatus().toString());
                 break;
             }
             

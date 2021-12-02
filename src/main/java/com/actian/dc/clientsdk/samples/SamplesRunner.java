@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -31,30 +32,30 @@ public class SamplesRunner
 {
     private static final Logger logger = LogUtil.getLogger(SamplesRunner.class);
         
-    static final String artifactsPath = new File("target/runtime/artifacts").getAbsolutePath();
+    static final String ARTIFACTS_PATH = new File("target/runtime/artifacts").getAbsolutePath();
      
     static String artifactPath(String name) {
-        return artifactsPath+"/"+name;
+        return ARTIFACTS_PATH+"/"+name;
     }
     
-    static final String samplePackageName = "Samples";
-    static final String samplePackageVersion = "1.0";
+    static final String SAMPLE_PACKAGE_NAME = "Samples";
+    static final String SAMPLE_PACKAGE_VERSION = "1.0";
     
     static String samplePackagePath() {
-        String fullPackageName = samplePackageName + "-" + samplePackageVersion + ".djar";
+        String fullPackageName = SAMPLE_PACKAGE_NAME + "-" + SAMPLE_PACKAGE_VERSION + ".djar";
         return artifactPath(fullPackageName);
     }
     
-    static final String sampleDataMacroName = "samples";
+    static final String SAMPLE_DATA_MACRO_NAME = "samples";
     
-    static final String sampleDataMacroValue = new File("target/runtime/data").getAbsolutePath();
+    static final String SAMPLE_DATA_MACRO_VALUE = new File("target/runtime/data").getAbsolutePath();
               
-    private static TaskBuilder taskBuilder;
+    private static final TaskBuilder taskBuilder;
     
     static {
-        Map<String, String> macros = new HashMap<String, String>();
-        macros.put(sampleDataMacroName, sampleDataMacroValue);        
-        taskBuilder = new TaskBuilder(samplePackageName, samplePackageVersion, macros);
+        Map<String, String> macros = new HashMap<>();
+        macros.put(SAMPLE_DATA_MACRO_NAME, SAMPLE_DATA_MACRO_VALUE);        
+        taskBuilder = new TaskBuilder(SAMPLE_PACKAGE_NAME, SAMPLE_PACKAGE_VERSION, macros);
     }
     
     /**
@@ -85,7 +86,7 @@ public class SamplesRunner
      */
     public static void main(String[] args) throws Exception
     {
-        List<ConnectionUser> samples = new ArrayList<ConnectionUser>();   
+        List<ConnectionUser> samples = new ArrayList<>();   
         if (args!=null && args.length > 0 && args[0].trim().length() > 0) {
             Class<?> clazz = null;
             String sampleClassToRun = args[0].trim();
@@ -120,10 +121,10 @@ public class SamplesRunner
         ConnectionBuilder cxnBuilder = new ConnectionBuilder();        
         for (ConnectionUser sample : samples) {
             String sampleName = sample.getClass().getSimpleName();
-            logger.info("Starting " + sampleName);
+            logger.log(Level.INFO, "Starting {0}", sampleName);
             boolean ok = sample.useConnection(cxnBuilder);
             String status = ok ? "OK" : "ERROR";
-            logger.info(sampleName + " finished " +status+"\n");
+            logger.log(Level.INFO, "{0} finished {1}\n", new String[]{sampleName, status});
             if (!ok) {
                 break;
             }

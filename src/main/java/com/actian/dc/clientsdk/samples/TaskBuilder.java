@@ -20,6 +20,7 @@ import com.pervasive.di.client.sdk.SDKException;
 import com.pervasive.di.client.sdk.Task;
 import java.io.File;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -29,7 +30,7 @@ import java.util.logging.Logger;
  */
 public class TaskBuilder 
 {
-    private static final Logger logger = LogUtil.getLogger(TaskBuilder.class);
+    private static final Logger LOGGER = LogUtil.getLogger(TaskBuilder.class);
             
     private final String packageName;
     private final String packageVersion;
@@ -53,16 +54,18 @@ public class TaskBuilder
     /**
      * Build a task using the existing package name, version, provided runtime 
      * configuration and local macros.
+     * @param rtcFile runtime configuration file
      * @return com.pervasive.di.client.sdk.Task instance
      * @throws SDKException if an error occurs while building the Task
      */
     public Task buildTask(File rtcFile) throws SDKException {
-        logger.info("Creating task for '"+packageName+"' Version '"+packageVersion+"'");
+        LOGGER.log(Level.INFO, "Creating task for ''{0}'' Version ''{1}''",
+                new String[]{packageName, packageVersion});
         Task task = new Task(packageName, packageVersion);
         if (rtcFile != null) {
             task.populate(rtcFile);
         }
-        for (Map.Entry<String, String> entry : localMacros.entrySet()) {          
+        for (Map.Entry<String, String> entry : localMacros.entrySet()) {
             task.addMacro(new NameValuePair(entry.getKey(), entry.getValue()));
         }
         return task;

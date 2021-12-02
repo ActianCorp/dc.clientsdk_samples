@@ -17,6 +17,7 @@ package com.actian.dc.clientsdk.samples;
 
 import com.pervasive.di.client.sdk.JobListener;
 import com.pervasive.di.client.sdk.JobProgress;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -25,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class SimpleJobListener implements JobListener
 {
-    protected final Logger logger;
+    private final Logger logger;
     
     private boolean finished = false;
     
@@ -43,21 +44,21 @@ public class SimpleJobListener implements JobListener
         switch (progress.getJobStatusCode())
         {
         case QUEUED:
-            logger.info("Queued Job ID: "+progress.getJobId());
+            logger.log(Level.INFO, "Queued Job ID: {0}", progress.getJobId());
             break;
         case RUNNING:
-            logger.info("Running Job ID: "+progress.getJobId());
+            logger.log(Level.INFO, "Running Job ID: {0}", progress.getJobId());
             break;
         case FINISHED_OK: 
-            logger.info("Completed Succesfully Job ID: "+progress.getJobId()); 
+            logger.log(Level.INFO, "Completed Succesfully Job ID: {0}", progress.getJobId()); 
             finished = true;
             break;
         case FINISHED_ERROR:
-            logger.info("Completed Unsuccesfully Job ID: "+progress.getJobId());
+            logger.log(Level.INFO, "Completed Unsuccesfully Job ID: {0}", progress.getJobId());
             finished = true;
             break;
         case ABORTED:
-            logger.info("Aborted Job ID: "+progress.getJobId());
+            logger.log(Level.INFO, "Aborted Job ID: {0}", progress.getJobId());
             finished = true;
             break;
         }

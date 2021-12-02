@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -31,6 +32,7 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
 {
     
     /**
+     * @throws com.pervasive.di.client.sdk.SDKException
      * @see com.actian.dc.clientsdk.samples.ExecutionConnectionUser#useConnection(com.pervasive.di.client.sdk.ExecutionConnection) 
      */
     @Override
@@ -39,7 +41,7 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
         try
         {
             // Instantiate the listener and start the listening thread
-            QueueListener listener = new QueueListener(logger);
+            QueueListener listener = new QueueListener(LOGGER);
             Thread thread = new Thread(listener);
             // this prevents the main thread from exiting before the listener is done
             thread.setDaemon(false);
@@ -64,15 +66,15 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
             return true;
         }
         catch (InterruptedException e) {
-            logger.severe(e.getMessage());
+            LOGGER.severe(e.getMessage());
         }
         return false;
     }
     
     private static class QueueListener implements JobListener, Runnable
     {
-        private Map<String, Job> jobmap = new HashMap<String, Job>();
-        private BlockingQueue<JobProgress> myqueue = new LinkedBlockingQueue<JobProgress>();
+        private final Map<String, Job> jobmap = new HashMap<>();
+        private final BlockingQueue<JobProgress> myqueue = new LinkedBlockingQueue<>();
         private int queuesize=0;
         private boolean finished = false;
         
@@ -94,7 +96,7 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
         // called by the parent app to place the job into the listener's job map
         synchronized void addJob(Job job)
         {
-            logger.info("Adding job " + job.getJobId() + " to queue [" + ++queuesize + "]");
+            logger.log(Level.INFO, "Adding job {0} to queue [{1}]", new Object[]{job.getJobId(), ++queuesize});
             jobmap.put(job.getJobId(), job);
         }
         
@@ -111,7 +113,7 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
                 try
                 {
                     // this is the place where you configure the timeout
-                    progress = pollRepeadedly(5, 12); // 5*12 = 60 seconds - max one minute of waiting
+                    progress = pollRepeatedly(5, 12); // 5*12 = 60 seconds - max one minute of waiting
                 }
                 catch (InterruptedException e)
                 {
@@ -130,7 +132,8 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
                     if (progress.getEventName() == JobEventName.JOB_ENDED)
                     {
                         jobmap.remove(progress.getJobId());
-                        logger.info("Removing job " + progress.getJobId() + " from queue [" + --queuesize + "]: " + progress.getJobStatusCode().toString());
+                        logger.log(Level.INFO, "Removing job {0} from queue [{1}]: {2}",
+                                new Object[]{progress.getJobId(), --queuesize, progress.getJobStatusCode().toString()});
                     }
                 }
             }
@@ -139,11 +142,12 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
             // then there are jobs still in the queue that didn't get reported as finished
             if (!jobmap.isEmpty())
                 for (Map.Entry pairs : jobmap.entrySet())
-                    logger.info("TIMEOUT: Job " + pairs.getKey() + " did not finish [" + --queuesize + "]");
+                    logger.log(Level.INFO, "TIMEOUT: Job {0} did not finish [{1}]",
+                            new Object[]{pairs.getKey(), --queuesize});
             myqueue.clear();
         }
         
-        private JobProgress pollRepeadedly(int secondsToWait, int retries) throws InterruptedException {
+        private JobProgress pollRepeatedly(int secondsToWait, int retries) throws InterruptedException {
             for (int i=0; i<retries; ++i) {
                 JobProgress progress = myqueue.poll(secondsToWait, TimeUnit.SECONDS);
                 if (progress != null) {
@@ -151,7 +155,7 @@ public class ExecutionListenerSample extends ExecutionConnectionUser
                 }
                 else {
                     int remaining = secondsToWait * (retries-i);
-                    logger.info("Countdown to shutdown: " + remaining + " seconds");
+                    logger.log(Level.INFO, "Countdown to shutdown: {0} seconds", remaining);
                 }
             }
             return null;

@@ -16,6 +16,7 @@
 package com.actian.dc.clientsdk.samples;
 
 import com.pervasive.di.client.sdk.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -24,6 +25,7 @@ import java.util.logging.Logger;
 public class ThreadedAsyncExecutionSample extends ExecutionConnectionUser
 {
     /**
+     * @throws com.pervasive.di.client.sdk.SDKException
      * @see com.actian.dc.clientsdk.samples.ExecutionConnectionUser#useConnection(com.pervasive.di.client.sdk.ExecutionConnection) 
      */
     @Override
@@ -31,8 +33,8 @@ public class ThreadedAsyncExecutionSample extends ExecutionConnectionUser
     {
         // Create a new Task and feed it the RTC
         Task task = SamplesRunner.sampleTask("Samples.process.rtc");
-        logger.info("Submitting task "+task.getTaskName());
-        JobListener listener = new Listener(logger);
+        LOGGER.log(Level.INFO, "Submitting task {0}", task.getTaskName());
+        JobListener listener = new Listener(LOGGER);
         Job job = null;
 
         // Wait until the listener says it's ok to proceed
