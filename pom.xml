@@ -4,7 +4,7 @@
     <groupId>com.pervasive.di.client.sdk</groupId>
     <artifactId>di-client-sdk-samples</artifactId>
     <packaging>jar</packaging>
-    <version>12.0.0-13</version>
+    <version>12.0.0-23</version>
     <name>PDI :: Client :: SDK :: Samples</name>
     <url>http://www.pervasive.com</url>
     <repositories>
@@ -29,7 +29,7 @@
     <dependencies>
         <dependency>
             <groupId>com.pervasive.di.client.sdk</groupId>
-            <artifactId>di-client-sdk-local</artifactId>
+            <artifactId>di-client-sdk</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
